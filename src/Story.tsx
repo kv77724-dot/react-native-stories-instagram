@@ -1,10 +1,12 @@
+import {Dimensions, Image, StyleSheet, View} from 'react-native';
 /* eslint-disable react/no-unused-prop-types */
 import React, {useState} from 'react';
-import {Dimensions, Image, StyleSheet, View} from 'react-native';
-import Video from 'react-native-video';
+
 // import Image from 'react-native-scalable-image';
 import PropTypes from 'prop-types';
 import {StoryType} from '.';
+import Video from 'react-native-video';
+import FastImage from 'react-native-fast-image';
 
 const ScreenWidth = Dimensions.get('window').width;
 
@@ -30,11 +32,11 @@ const Story = (props: Props) => {
       </View>
       )} */}
       {type === 'image' ? (
-        <Image
+        <FastImage
           source={{uri: url}}
           onLoadEnd={props.onImageLoaded}
           style={styles.content}
-          resizeMode="stretch"
+          resizeMode="contain"
           // width={ScreenWidth}
         />
       ) : (

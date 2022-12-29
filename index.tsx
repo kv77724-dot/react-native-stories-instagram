@@ -1,4 +1,3 @@
-import React, { useRef, useState, useEffect } from "react";
 import {
   FlatList,
   Image,
@@ -8,11 +7,13 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { StoryType } from "./src";
-
-const { CubeNavigationHorizontal } = require("react-native-3dcube-navigation");
+import React, { useEffect, useRef, useState } from "react";
 
 import StoryContainer from "./src/StoryContainer";
+import { StoryType } from "./src";
+import FastImage from "react-native-fast-image";
+
+const { CubeNavigationHorizontal } = require("react-native-3dcube-navigation");
 
 type Props = {
   data: StoryType[];
@@ -27,9 +28,16 @@ const Stories = (props: Props) => {
   const [currentUserIndex, setCurrentUserIndex] = useState(0);
   const [currentScrollValue, setCurrentScrollValue] = useState(0);
   const modalScroll = useRef(null);
-
   const onStorySelect = (index) => {
     setCurrentUserIndex(index);
+    // Fixed 0th card showing issue, when opening clicking on any story banner first time
+    setTimeout(() => {
+      try {
+        modalScroll?.current?.scrollTo(index, false);
+      } catch (error) {
+        console.log('While opening'); 
+      }
+    }, 200);
     setModel(true);
   };
 
@@ -82,18 +90,19 @@ const Stories = (props: Props) => {
       <FlatList
         data={props.data}
         horizontal
-        keyExtractor={(item) => item.title}
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
           <View style={styles.boxStory}>
             <TouchableOpacity onPress={() => onStorySelect(index)}>
               <View style={[styles.superCircle, props.containerAvatarStyle]}>
-                <Image
+                <FastImage
                   style={[styles.circle, props.avatarStyle]}
                   source={{ uri: item.profile }}
                 />
               </View>
 
-              <Text style={[styles.title, props.titleStyle]}>{item.title}</Text>
+              {/* <Text style={[styles.title, props.titleStyle]}>{item.title}</Text> */}
             </TouchableOpacity>
           </View>
         )}
@@ -135,7 +144,8 @@ const Stories = (props: Props) => {
 
 const styles = new StyleSheet.create({
   boxStory: {
-    marginLeft: 15,
+    // marginLeft: 16,
+    borderRadius: 4,
   },
   ItemSeparator: { height: 1, backgroundColor: "#ccc" },
   container: {
@@ -146,7 +156,7 @@ const styles = new StyleSheet.create({
   circle: {
     width: 50,
     height: 50,
-    borderRadius: 60,
+    // borderRadius: 60,
     borderWidth: 3,
     borderColor: "#FFF",
   },

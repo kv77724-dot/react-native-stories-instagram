@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { memo } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 type Props = {
@@ -34,20 +35,20 @@ const diffDateWithNow = (date) => {
 export default memo(function UserView(props: Props) {
   return (
     <View style={styles.userView}>
-      <Image source={{ uri: props.profile }} style={styles.image} />
+      <FastImage source={{ uri: props.profile }} style={styles.image} />
       <View style={{ flex: 1 }}>
         <View style={styles.barUsername}>
           <Text style={styles.name}>{props.name}</Text>
-          <Image
+          {/* <Image
             source={require("./imgs/verify_icon.png")}
             style={styles.verifyIcon}
-          />
+          /> */}
         </View>
 
-        <Text style={styles.time}>
+        {/* <Text style={styles.time}>
           {!!props.datePublication &&
             `Publicado há ${diffDateWithNow(props.datePublication)}`}
-        </Text>
+        </Text> */}
       </View>
       <TouchableOpacity onPress={props.onClosePress}>
         <Icon name="close" color="white" size={25} style={{ marginRight: 8 }} />
@@ -64,8 +65,8 @@ const styles = StyleSheet.create({
   image: {
     width: 50,
     height: 50,
-    borderRadius: 25,
-    marginLeft: 8,
+    // borderRadius: 25,
+    // marginLeft: 8,
   },
   verifyIcon: {
     width: 20,

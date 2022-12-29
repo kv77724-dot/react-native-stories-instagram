@@ -1,6 +1,6 @@
 {
   "name": "react-native-stories-instagram",
-  "version": "0.0.1",
+  "version": "0.4.0",
   "description": "Stories for React native Like Instagram, Whatsapp and Twitter",
   "main": "index.tsx",
   "scripts": {
@@ -41,7 +41,14 @@
     "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4"
   },
-
   "author": "Vikas Swami <vikasmc100@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikas-swami/react-native-stories-instagram.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vikas-swami/react-native-stories-instagram/issues"
+  },
+  "homepage": "https://github.com/vikas-swami/react-native-stories-instagram#readme"
 }

@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
 import {
   ActivityIndicator,
   Dimensions,
   NativeTouchEvent,
   StyleSheet,
-  View,
   TouchableOpacity,
+  View,
 } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StoriesType, StoryType } from ".";
 
-import { WebView } from "react-native-webview";
-import Modal from "react-native-modalbox";
 import GestureRecognizer from "react-native-swipe-gestures";
+import Modal from "react-native-modalbox";
+import ProgressArray from "./ProgressArray";
+import Readmore from "./Readmore";
 import Story from "./Story";
 import UserView from "./UserView";
-import Readmore from "./Readmore";
-import ProgressArray from "./ProgressArray";
-import { StoriesType, StoryType } from ".";
+// import { WebView } from "react-native-webview";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -42,7 +42,10 @@ const StoryContainer: React.FC<Props> = (props: Props) => {
   // const onVideoLoaded = (length) => {
   //   props.onVideoLoaded(length.duration);
   // };
-
+  React.useEffect(() => {
+    setLoaded(true);
+   }, []);
+   
   const changeStory = (evt: NativeTouchEvent) => {
     if (evt.locationX > SCREEN_WIDTH / 2) {
       nextStory();
@@ -107,7 +110,9 @@ const StoryContainer: React.FC<Props> = (props: Props) => {
               story={story}
             />
           </View>
-          <ActivityIndicator color="white" />
+          <View style={styles.activityIndicator}>
+            <ActivityIndicator color="#fff" />
+          </View>
         </View>
       );
     }
@@ -182,7 +187,7 @@ const StoryContainer: React.FC<Props> = (props: Props) => {
             progress={{ id: currentIndex }}
           />
         </View>
-
+        {/* Removed WebView as we don't need it */}
         <Modal
           style={styles.modal}
           position="bottom"
@@ -190,7 +195,6 @@ const StoryContainer: React.FC<Props> = (props: Props) => {
           onClosed={onReadMoreClose}
         >
           <View style={styles.bar} />
-          <WebView source={{ uri: stories[currentIndex].url_readmore }} />
         </Modal>
       </TouchableOpacity>
     </GestureRecognizer>
@@ -257,6 +261,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginTop: 8,
   },
+  activityIndicator: {position:'absolute',bottom:20}
 });
 
 export default StoryContainer;
