@@ -34,9 +34,7 @@ const Stories = (props: Props) => {
     setTimeout(() => {
       try {
         modalScroll?.current?.scrollTo(index, false);
-      } catch (error) {
-        console.log('While opening'); 
-      }
+      } catch () {}
     }, 200);
     setModel(true);
   };
@@ -53,7 +51,9 @@ const Stories = (props: Props) => {
         //erro aqui
         try {
           modalScroll.current.scrollTo(newIndex, true);
-        } catch (e) {}
+        } catch (e) {
+          console.warn("error=>", e);
+        }
       }
     } else {
       setModel(false);
