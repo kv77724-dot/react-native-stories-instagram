@@ -35,21 +35,7 @@ const diffDateWithNow = (date) => {
 export default memo(function UserView(props: Props) {
   return (
     <View style={styles.userView}>
-      <FastImage source={{ uri: props.profile }} style={styles.image} />
-      <View style={{ flex: 1 }}>
-        <View style={styles.barUsername}>
-          <Text style={styles.name}>{props.name}</Text>
-          {/* <Image
-            source={require("./imgs/verify_icon.png")}
-            style={styles.verifyIcon}
-          /> */}
-        </View>
-
-        {/* <Text style={styles.time}>
-          {!!props.datePublication &&
-            `Publicado há ${diffDateWithNow(props.datePublication)}`}
-        </Text> */}
-      </View>
+      <View style={styles.flex} />
       <TouchableOpacity onPress={props.onClosePress}>
         <Icon name="close" color="white" size={25} style={{ marginRight: 8 }} />
       </TouchableOpacity>
@@ -93,4 +79,5 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     color: "white",
   },
+  flex:{ flex: 1 },
 });
