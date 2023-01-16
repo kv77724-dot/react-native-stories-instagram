@@ -144,7 +144,6 @@ const Stories = (props: Props) => {
 
 const styles = new StyleSheet.create({
   boxStory: {
-    // marginLeft: 16,
     borderRadius: 4,
   },
   ItemSeparator: { height: 1, backgroundColor: "#ccc" },
@@ -156,8 +155,6 @@ const styles = new StyleSheet.create({
   circle: {
     width: 50,
     height: 50,
-    // borderRadius: 60,
-    borderWidth: 3,
     borderColor: "#FFF",
   },
   superCircle: {
