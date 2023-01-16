@@ -53,9 +53,7 @@ const Stories = (props: Props) => {
         //erro aqui
         try {
           modalScroll.current.scrollTo(newIndex, true);
-        } catch (e) {
-          console.warn("error=>", e);
-        }
+        } catch (e) {}
       }
     } else {
       setModel(false);
@@ -101,8 +99,6 @@ const Stories = (props: Props) => {
                   source={{ uri: item.profile }}
                 />
               </View>
-
-              {/* <Text style={[styles.title, props.titleStyle]}>{item.title}</Text> */}
             </TouchableOpacity>
           </View>
         )}
